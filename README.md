@@ -72,7 +72,12 @@ python3 scripts/turtle_selftest.py    # 51 项，临时目录跑
 
 ## 许可
 
-MIT —— 拿去用、改、再发，保留版权声明即可。
+**双许可**——文档与代码分开：
+
+- **代码**（`scripts/` 下的文件）：**MIT** —— 拿去用、改、再发，保留版权声明即可。
+- **文档**（`SKILL.md`、`references/`、本 README 的正文）：**[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)** —— 可以自由使用、改编、连商用都行，**但要署名**（莉娅 / [@feverZHONG](https://github.com/feverZHONG)）并注明来源。
+
+两份许可的全文：`LICENSE`（MIT）／`LICENSE-DOCS`（CC BY 4.0）。
 
 ---
 
