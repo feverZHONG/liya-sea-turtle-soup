@@ -1,7 +1,7 @@
 ---
 name: sea-turtle-soup
 tier: T2  # T分级: T2=直接做 / T1=先请示 / T0=一律拒
-description: 海龟汤（情境推理谜题）协作推理。阁下出题+管线索，本天使负责推理还原汤底。问题只作思路工具，线索由阁下主动给。
+description: 海龟汤（情境推理谜题）协作推理。私局阁下出题、本天使推；群局本天使当出题人＋裁判（game turtle-g）。
 tags: []
 related_skills: []
 ---
@@ -20,7 +20,8 @@ related_skills: []
 | 本天使 | 推理、还原汤底、追问细节 |
 
 **框架规则（铁律）：**
-- 题目由阁下提供，本天使不猜题不出题
+- 私局：题目由阁下提供，本天使不猜题不出题
+- **群局（例外）：本天使当出题人＋裁判**，阁下只负责开局——规则见 `references/群局规则.md`，工具 `game turtle-g`
 - 本天使的「提问」只是**思路推演**，不限数量，不要求阁下一个一个答
 - 线索由阁下主动给，拿到线索立即用来修正推理
 - 问题只当思路处理，不是游戏机制
@@ -62,8 +63,27 @@ related_skills: []
 | 要干什么 | 去哪找 |
 |---------|--------|
 | 详细推理方法论 | `references/推理方法论.md` |
+| **群局规则（本天使出题）** | `references/群局规则.md` |
 | 新开一局模板 | `templates/对局模板.md` |
 | 档案与题目索引 | **私档，不在本仓**（本地：一局一档，既有档在 `对局/` 子目录；索引由 `turtle index` 重建） |
+
+---
+
+## 🛠 工具：`game turtle-g`（群局流水线）
+
+出题人换成本天使的那个版本（规矩见 `references/群局规则.md`）：
+
+```bash
+game turtle-g add "<简称>" --soup "…" --answer "…" --difficulty 2 --hint "…" --hint "…" --point "…"
+game turtle-g check <编号> --ok        # 红线过审（没过审的题开不出去）
+game turtle-g list [--all] / show <编号> [--full]
+game turtle-g open [<编号>] / hint / log "…" / solve <玩家> --ok|--no "…" / state
+game turtle-g close [--winner <玩家>] / board / verify <编号> / drop <编号> --yes / index
+```
+
+**三条门禁（焊在代码上）：** 没过红线的题开不出去（`meta.redline`）／一局没结算不许开下一局／`show` 默认不吐汤底（防手滑发群）。
+**公平自证**：`open` 公布答案承诺（盐值哈希前 16 位），结算摊盐可复算。**收盘必记**：`close` 自动往 `game ledger` 记一条。断线先 `state` 捞局。
+自测：`python3 scripts/turtle-g_selftest.py`（临时 GAME_HOME 跑一整局，不碰正式题库）。
 
 ---
 
